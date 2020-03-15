@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class TodoListActivity extends AppCompatActivity {
 
-    final int R_ID = 235878;
+    final int R_ID = 23588;
     private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
