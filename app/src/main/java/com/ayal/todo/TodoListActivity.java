@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class TodoListActivity extends AppCompatActivity {
 
     final int R_ID = 23588;
@@ -18,7 +20,7 @@ public class TodoListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list);
-        Button add = bindButton((Button)findViewById(R.id.addTask));
+        FloatingActionButton add = bindButton((FloatingActionButton)findViewById(R.id.addTask));
     }
 
     private void setViews(){
@@ -29,7 +31,7 @@ public class TodoListActivity extends AppCompatActivity {
 
     }
 
-    private Button bindButton (Button button){
+    private FloatingActionButton bindButton (FloatingActionButton button){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
