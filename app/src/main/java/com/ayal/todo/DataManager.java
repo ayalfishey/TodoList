@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class DataManager {
     private static ArrayList<Todo> todos = new ArrayList<>();
 
-    public static void AddToList(Todo task){
+    public static void addToList(Todo task){
         todos.add(task);
     }
 
