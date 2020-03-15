@@ -1,9 +1,9 @@
 package com.ayal.todo;
 
-public class ToDo {
+public class Todo {
     private String todo;
 
-    public ToDo(String todo) {
+    public Todo(String todo) {
         this.todo = todo;
     }
 
