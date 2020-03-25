@@ -1,11 +1,14 @@
 package com.ayal.todo;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddTodoActivity extends AppCompatActivity {
 
@@ -17,11 +20,27 @@ public class AddTodoActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText taskET = findViewById(R.id.taskET);
-                Todo todo = new Todo(taskET.getText().toString());
-                DataManager.addToList(todo);
-                setResult(RESULT_OK);
-                finish();
+                AlertDialog.Builder alert = new AlertDialog.Builder(AddTodoActivity.this);
+                alert.setTitle("Are you sure?");
+                alert.setMessage("Do you want to add this task to your list?");
+                alert.setCancelable(false);
+                alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText taskET = findViewById(R.id.taskET);
+                        Todo todo = new Todo(taskET.getText().toString());
+                        DataManager.addToList(todo);
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+                });
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(AddTodoActivity.this, "Canceled",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.show();
             }
         });
     }
