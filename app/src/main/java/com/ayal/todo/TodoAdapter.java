@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
     ArrayList<Todo> tasks;
     ViewGroup parent;
-    Context context;
     TodoAdapter() {
         tasks = DataManager.getTodos();
     }
@@ -31,7 +30,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_cell, parent, false);
         this.parent = parent;
-        context = parent.getContext();
         return new TodoViewHolder(view);
     }
 
@@ -64,7 +62,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         holder.task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = ((TodoListActivity)context).getSupportFragmentManager();
+                FragmentManager fragmentManager = ((TodoListActivity)v.getContext()).getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 TodoListFragment fragment = new TodoListFragment();
                 transaction.replace(R.id.frag_container, fragment);
