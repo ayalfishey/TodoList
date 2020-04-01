@@ -1,7 +1,7 @@
 package com.ayal.todo;
 
 public class Todo {
-    private String todo;
+    private String todo, description;
     private Progress progress;
 
     public Todo(String todo) {
@@ -9,8 +9,22 @@ public class Todo {
         progress = Progress.TODO;
     }
 
-    public String getTodo() {
+    public Todo(String todo, String description) {
+        this.todo = todo;
+        this.description = description;
+        progress = Progress.TODO;
+    }
+
+    public String getTodoName() {
         return todo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setTodo(String todo) {

@@ -25,6 +25,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         tasks = DataManager.getTodos();
     }
 
+    public void setTasks(ArrayList<Todo> tasks) {
+        this.tasks = tasks;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,38 +40,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final TodoViewHolder holder, final int position) {
-        holder.task.setText(tasks.get(position).getTodo());
+        holder.task.setText(tasks.get(position).getTodoName());
         setTaskColor(position, holder);
-        holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                switch (pos) {
-                    case 0:
-                        tasks.get(position).setProgress(Progress.TODO);
-                        break;
-                    case 1:
-                        tasks.get(position).setProgress(Progress.IN_PROGRESS);
-                        break;
-                    case 2:
-                        tasks.get(position).setProgress(Progress.DONE);
-                        break;
-                }
-                setTaskColor(position, holder);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                setTaskColor(position, holder);
-            }
-        });
         holder.task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = ((TodoListActivity)v.getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                TodoListFragment fragment = new TodoListFragment();
-                transaction.replace(R.id.frag_container, fragment);
-                transaction.commit();
+                ((HandleTodoFragment)v.getContext()).handleTodoFragment(tasks.get(position));
 
             }
         });
@@ -104,12 +83,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     public class TodoViewHolder extends RecyclerView.ViewHolder {
         TextView task;
-        Spinner spinner;
 
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
             task = itemView.findViewById(R.id.taskTV);
-            spinner = itemView.findViewById(R.id.spinner);
         }
     }
 }
