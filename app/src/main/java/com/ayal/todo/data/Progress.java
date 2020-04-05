@@ -1,4 +1,4 @@
-package com.ayal.todo;
+package com.ayal.todo.data;
 
 
 public enum Progress{

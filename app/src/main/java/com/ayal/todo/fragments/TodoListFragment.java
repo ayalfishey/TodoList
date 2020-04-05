@@ -1,4 +1,4 @@
-package com.ayal.todo;
+package com.ayal.todo.fragments;
 
 import android.os.Bundle;
 
@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.ayal.todo.R;
+import com.ayal.todo.data.DataManager;
+import com.ayal.todo.classes.HandleTodoFragment;
+import com.ayal.todo.classes.Todo;
+import com.ayal.todo.data.Progress;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +31,12 @@ public class TodoListFragment extends Fragment {
 
     public TodoListFragment() {
         // Required empty public constructor
+    }
+
+    public static TodoListFragment newInstance(Bundle b){
+        TodoListFragment fragment = new TodoListFragment();
+        fragment.setArguments(b);
+        return fragment;
     }
 
 
@@ -61,6 +73,8 @@ public class TodoListFragment extends Fragment {
                 }
             }
         });
+        String name = getArguments().getString("todoName");
+        updateData(DataManager.getTodoByName(name));
 
     }
 

@@ -1,4 +1,6 @@
-package com.ayal.todo;
+package com.ayal.todo.classes;
+
+import com.ayal.todo.data.Progress;
 
 public class Todo {
     private String todo, description;

@@ -1,4 +1,6 @@
-package com.ayal.todo;
+package com.ayal.todo.data;
+
+import com.ayal.todo.classes.Todo;
 
 import java.util.ArrayList;
 
@@ -12,4 +14,13 @@ public class DataManager {
     public static ArrayList<Todo> getTodos() {
         return todos;
     }
+
+    public static Todo getTodoByName(String name){
+        for (Todo todo: todos) {
+            if (todo.getTodoName() == name)
+                return todo;
+        }
+        return null;
+    }
 }
+

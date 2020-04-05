@@ -1,4 +1,6 @@
-package com.ayal.todo;
+package com.ayal.todo.classes;
+
+import com.ayal.todo.data.Progress;
 
 public interface HandleTodoFragment {
     public void handleTodoFragment(Todo todo);

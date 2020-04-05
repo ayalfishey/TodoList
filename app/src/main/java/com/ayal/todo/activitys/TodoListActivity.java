@@ -1,4 +1,4 @@
-package com.ayal.todo;
+package com.ayal.todo.activitys;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.Button;
 
+import com.ayal.todo.data.DataManager;
+import com.ayal.todo.classes.HandleTodoFragment;
+import com.ayal.todo.data.Progress;
+import com.ayal.todo.R;
+import com.ayal.todo.classes.Todo;
+import com.ayal.todo.views.TodoAdapter;
+import com.ayal.todo.fragments.TodoListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class TodoListActivity extends AppCompatActivity implements HandleTodoFragment{
+public class TodoListActivity extends AppCompatActivity implements HandleTodoFragment {
 
     final int R_ID = 23588;
     private RecyclerView recyclerView;
@@ -63,14 +68,14 @@ public class TodoListActivity extends AppCompatActivity implements HandleTodoFra
         if(fragment == null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            fragment = new TodoListFragment();
+            Bundle b = new Bundle();
+            b.putString("todoName",todo.getTodoName());
+            fragment = TodoListFragment.newInstance(b);
             transaction.add(R.id.frag_container, fragment, "Todo");
             transaction.addToBackStack("frag");
             transaction.commit();
-            fragment.updateData(todo);
-        } else {
-            fragment.updateData(todo);
         }
+        fragment.updateData(todo);
     }
 
     @Override

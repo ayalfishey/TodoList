@@ -1,4 +1,4 @@
-package com.ayal.todo;
+package com.ayal.todo.activitys;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.ayal.todo.data.DataManager;
+import com.ayal.todo.R;
+import com.ayal.todo.classes.Todo;
 
 public class AddTodoActivity extends AppCompatActivity {
 
@@ -28,7 +32,8 @@ public class AddTodoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         EditText taskET = findViewById(R.id.taskET);
-                        Todo todo = new Todo(taskET.getText().toString());
+                        EditText descriptionET = findViewById(R.id.descriptionET);
+                        Todo todo = new Todo(taskET.getText().toString(), descriptionET.getText().toString());
                         DataManager.addToList(todo);
                         setResult(RESULT_OK);
                         finish();
