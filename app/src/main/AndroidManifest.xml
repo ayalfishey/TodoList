@@ -11,7 +11,8 @@
         android:name=".data.DatabaseInit"
         android:theme="@style/AppTheme">
         <activity android:name=".activitys.AddTodoActivity"></activity>
-        <activity android:name=".activitys.TodoListActivity">
+        <activity android:name=".activitys.TodoListActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

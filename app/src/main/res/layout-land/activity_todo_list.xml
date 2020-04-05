@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/headline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/in_progress_btn"
-        android:background="#ff0000"
+        android:background="#d01909"
         android:text="Todo"
         />
 
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/headline"
         app:layout_constraintStart_toEndOf="@id/todo_btn"
         app:layout_constraintEnd_toStartOf="@id/done_btn"
-        android:background="#FFEB3B"
+        android:background="#F3EB3B"
         android:text="In Progress"
         />
 

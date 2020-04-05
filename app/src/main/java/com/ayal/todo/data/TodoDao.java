@@ -17,8 +17,8 @@ public interface TodoDao {
     @Query("SELECT * FROM todo")
     List<Todo> getAll();
 
-//    @Query("SELECT * FROM todo WHERE id = :todoId")
-//    void getTodoById(int todoId);
+    @Query("SELECT * FROM todo WHERE progressId = :progressId")
+    List<Todo> getTodoByProgress(int progressId);
 
     @Insert(onConflict = REPLACE)
     void insertAll(ArrayList<Todo> todos);

@@ -17,7 +17,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     ArrayList<Todo> tasks;
     ViewGroup parent;
     public TodoAdapter() {
-        tasks = DataManager.getTodos();
+        tasks = DataManager.getTodoList();
     }
 
     public void setTasks(ArrayList<Todo> tasks) {

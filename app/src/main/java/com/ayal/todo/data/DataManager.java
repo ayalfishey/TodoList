@@ -21,7 +21,7 @@ public class DataManager {
         db.getTodoDao().insertAll(todos);
     }
 
-    public static ArrayList<Todo> getTodos() {
+    public static ArrayList<Todo> getTodoList() {
         return new ArrayList<Todo>(db.getTodoDao().getAll());
     }
 
@@ -39,6 +39,9 @@ public class DataManager {
                 return todo;
         }
         return null;
+    }
+    public static ArrayList<Todo> getTodos (Progress progress){
+        return new ArrayList<Todo>(db.getTodoDao().getTodoByProgress(Todo.getProgressId(progress)));
     }
 }
 

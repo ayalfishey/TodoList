@@ -104,4 +104,16 @@ public class Todo {
     public Progress getProgress() {
         return progress;
     }
+
+    public static int getProgressId(Progress progress){
+        switch (progress) {
+            case TODO:
+                return 0;
+            case IN_PROGRESS:
+                return 1;
+            case DONE:
+                return 2;
+        }
+        return -1;
+    }
 }
