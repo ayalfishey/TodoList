@@ -20,6 +20,8 @@ import com.ayal.todo.views.TodoAdapter;
 import com.ayal.todo.fragments.TodoListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class TodoListActivity extends AppCompatActivity implements HandleTodoFragment {
 
     final int R_ID = 23588;
@@ -81,11 +83,12 @@ public class TodoListActivity extends AppCompatActivity implements HandleTodoFra
     @Override
     public void updateProgress(Progress progress, String todoName) {
         Todo todo;
+        ArrayList<Todo> todos = DataManager.getTodos();
         for (int i = 0; i < DataManager.getTodos().size() ; i++) {
-            if(DataManager.getTodos().get(i).getTodoName() == todoName){
-                todo = DataManager.getTodos().get(i);
+            if(todos.get(i).getTodoName().equals( todoName)){
+                todo = todos.get(i);
                 todo.setProgress(progress);
-                DataManager.getTodos().set(i , todo);
+                DataManager.setTodo(i , todo);
                 adapter.setTasks(DataManager.getTodos());
                 return;
             }
