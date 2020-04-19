@@ -41,7 +41,7 @@ public class DataManager {
         return null;
     }
     public static ArrayList<Todo> getTodos (Progress progress){
-        return new ArrayList<Todo>(db.getTodoDao().getTodoByProgress(Todo.getProgressId(progress)));
+        return new ArrayList<Todo>(db.getTodoDao().getTodoByProgress(progress.id));
     }
 }
 

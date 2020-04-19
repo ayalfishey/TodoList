@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.ayal.todo.classes.Todo;
 
@@ -17,11 +18,14 @@ public interface TodoDao {
     @Query("SELECT * FROM todo")
     List<Todo> getAll();
 
-    @Query("SELECT * FROM todo WHERE progressId = :progressId")
+    @Query("SELECT * FROM todo WHERE progress = :progressId")
     List<Todo> getTodoByProgress(int progressId);
 
     @Insert(onConflict = REPLACE)
     void insertAll(ArrayList<Todo> todos);
+
+    @Update
+    void updateTask(int taskId);
 
     @Delete
     void remove(Todo todo);

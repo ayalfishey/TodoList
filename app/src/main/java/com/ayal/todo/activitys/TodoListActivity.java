@@ -96,6 +96,7 @@ public class TodoListActivity extends AppCompatActivity implements HandleTodoFra
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
+            adapter.setTasks(DataManager.getTodoList());
         }
     }
     @Override

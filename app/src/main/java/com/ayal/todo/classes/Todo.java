@@ -1,83 +1,81 @@
 package com.ayal.todo.classes;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import com.ayal.todo.data.Progress;
+import com.ayal.todo.data.converters.DateConverter;
+import com.ayal.todo.data.converters.ProgressConverter;
+
+import java.util.Date;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-@Entity
+@Entity //(tableName = "something")
+@TypeConverters({ProgressConverter.class, DateConverter.class})
 public class Todo {
     public String getTodo() {
         return todo;
     }
 
-    public int getProgressId() {
-        return progressId;
-    }
 
-    public void setProgressId(int progressId) {
-        this.progressId = progressId;
-    }
 
-    @PrimaryKey
-    @NonNull private String todo;
-    @NonNull private String description;
-    private int progressId;
-    @Ignore
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private Date taskDate;
+    private String todo;
+    private String description;
     private Progress progress;
 
     @Ignore
     public Todo(String todo) {
         this.todo = todo;
         progress = Progress.TODO;
-        setProgressId();
     }
-    @Ignore
+
+
     public Todo(String todo, String description) {
         this.todo = todo;
         this.description = description;
         progress = Progress.TODO;
-        setProgressId();
+        taskDate = new Date();
     }
 
-    public Todo(String todo, String description, int progressId) {
-        this.todo = todo;
-        this.description = description;
-        this.progressId = progressId;
-        setProgressById();
+//    private void setProgressById() {
+//        switch (progressId) {
+//            case 0:
+//                progress = Progress.TODO;
+//                break;
+//            case 1:
+//                progress = Progress.IN_PROGRESS;
+//                break;
+//            case 2:
+//                progress = Progress.DONE;
+//                break;
+//        }
+//    }
+
+    public int getId() {
+        return id;
     }
 
-    private void setProgressById(){
-        switch (progressId) {
-            case 0:
-                progress = Progress.TODO;
-                break;
-            case 1:
-                progress = Progress.IN_PROGRESS;
-                break;
-            case 2:
-                progress = Progress.DONE;
-                break;
-        }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    private void setProgressId(){
-        switch (progress) {
-            case TODO:
-                progressId = 0;
-                break;
-            case IN_PROGRESS:
-                progressId = 1;
-                break;
-            case DONE:
-                progressId = 2;
-                break;
-        }
+    public Date getTaskDate() {
+        return taskDate;
+    }
+
+    public void setTaskDate(Date taskDate) {
+        this.taskDate = taskDate;
     }
 
     public String getTodoName() {
@@ -98,22 +96,10 @@ public class Todo {
 
     public void setProgress(Progress progress) {
         this.progress = progress;
-        setProgressId();
     }
 
     public Progress getProgress() {
         return progress;
     }
 
-    public static int getProgressId(Progress progress){
-        switch (progress) {
-            case TODO:
-                return 0;
-            case IN_PROGRESS:
-                return 1;
-            case DONE:
-                return 2;
-        }
-        return -1;
-    }
 }
